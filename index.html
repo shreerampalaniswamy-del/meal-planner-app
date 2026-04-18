@@ -8,25 +8,30 @@
 </head>
 <body>
   <div class="container">
-    <h1>Meal Planner App</h1>
-    <p>Your weekly cooking and grocery guide.</p>
+    <header class="hero">
+      <h1>Meal Planner App</h1>
+      <p class="subtitle">A simple weekly cooking planner with recipes, today’s tasks, and grocery list.</p>
+    </header>
 
-    <section id="today-section" class="card">
+    <section class="card">
       <h2>Today</h2>
       <div id="today-content"></div>
     </section>
 
-    <section id="week-section" class="card">
-      <h2>Weekly Plan</h2>
+    <section class="card">
+      <div class="section-head">
+        <h2>Weekly Plan</h2>
+        <button id="show-all-recipes" class="secondary-btn">Show all recipes</button>
+      </div>
       <div id="week-content"></div>
     </section>
 
-    <section id="recipe-section" class="card">
+    <section class="card">
       <h2>Recipe Details</h2>
-      <div id="recipe-content">Click a recipe to see details.</div>
+      <div id="recipe-content">Click a recipe from the weekly plan to see details here.</div>
     </section>
 
-    <section id="grocery-section" class="card">
+    <section class="card">
       <h2>Grocery List</h2>
       <div id="grocery-content"></div>
     </section>
