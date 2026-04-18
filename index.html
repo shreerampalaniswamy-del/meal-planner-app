@@ -10,25 +10,43 @@
   <div class="container">
     <header class="hero">
       <h1>Meal Planner App</h1>
-      <p class="subtitle">A simple weekly cooking planner with recipes, today’s tasks, and grocery list.</p>
+      <p class="subtitle">Choose dishes fast, cook without confusion, and keep your week on track.</p>
     </header>
 
     <section class="card">
-      <h2>Today</h2>
+      <div class="section-head">
+        <h2>Today</h2>
+        <button id="show-all-recipes" class="secondary-btn">Show all recipes</button>
+      </div>
       <div id="today-content"></div>
     </section>
 
     <section class="card">
-      <div class="section-head">
-        <h2>Weekly Plan</h2>
-        <button id="show-all-recipes" class="secondary-btn">Show all recipes</button>
+      <h2>Filter dishes</h2>
+      <div class="filter-row" id="filter-row">
+        <button class="filter-btn active" data-filter="All">All</button>
+        <button class="filter-btn" data-filter="Chicken">Chicken</button>
+        <button class="filter-btn" data-filter="Egg">Egg</button>
+        <button class="filter-btn" data-filter="Paneer">Paneer</button>
+        <button class="filter-btn" data-filter="Vegetarian">Vegetarian</button>
+        <button class="filter-btn" data-filter="Fast">Fast</button>
+        <button class="filter-btn" data-filter="Emergency">Emergency</button>
       </div>
+    </section>
+
+    <section class="card">
+      <h2>Weekly Plan</h2>
       <div id="week-content"></div>
     </section>
 
     <section class="card">
+      <h2>Recipe Cards</h2>
+      <div id="recipe-grid" class="recipe-grid"></div>
+    </section>
+
+    <section class="card">
       <h2>Recipe Details</h2>
-      <div id="recipe-content">Click a recipe from the weekly plan to see details here.</div>
+      <div id="recipe-content">Click a recipe card to see details here.</div>
     </section>
 
     <section class="card">
@@ -36,7 +54,6 @@
       <div id="grocery-content"></div>
     </section>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
