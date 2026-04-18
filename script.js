@@ -1,162 +1,158 @@
-* {
-  box-sizing: border-box;
+const weeklyPlan = {
+  Monday: { lunch: 1, dinner: 2 },
+  Tuesday: { lunch: 4, dinner: 3 },
+  Wednesday: { lunch: 1, dinner: 5 },
+  Thursday: { lunch: 4, dinner: 2 },
+  Friday: { lunch: 1, dinner: 3 },
+  Saturday: { lunch: 4, dinner: 6 },
+  Sunday: { lunch: 1, dinner: 2 }
+};
+
+let recipes = [];
+
+fetch('recipes.json')
+  .then((response) => response.json())
+  .then((data) => {
+    recipes = data;
+    renderWeek();
+    renderToday();
+    renderGroceryList();
+    bindShowAllRecipes();
+  })
+  .catch(() => {
+    document.getElementById('today-content').innerHTML = '<p>Could not load recipes.json. Please check that the file is uploaded correctly.</p>';
+  });
+
+function getRecipeById(id) {
+  return recipes.find((recipe) => recipe.id === id);
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f6f4ef;
-  color: #1f1f1f;
+function renderWeek() {
+  const weekContent = document.getElementById('week-content');
+  weekContent.innerHTML = '';
+
+  Object.keys(weeklyPlan).forEach((day) => {
+    const lunchRecipe = getRecipeById(weeklyPlan[day].lunch);
+    const dinnerRecipe = getRecipeById(weeklyPlan[day].dinner);
+
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'day-card';
+    dayDiv.innerHTML = `
+      <h3>${day}</h3>
+      <div class="meal-row">
+        <span class="meal-label">Lunch</span>
+        <button class="recipe-button" onclick="showRecipe(${lunchRecipe.id})">${lunchRecipe.name}</button>
+        <span class="helper-text">${lunchRecipe.protein} g protein</span>
+      </div>
+      <div class="meal-row">
+        <span class="meal-label">Dinner</span>
+        <button class="recipe-button" onclick="showRecipe(${dinnerRecipe.id})">${dinnerRecipe.name}</button>
+        <span class="helper-text">${dinnerRecipe.protein} g protein</span>
+      </div>
+    `;
+    weekContent.appendChild(dayDiv);
+  });
 }
 
-.container {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 24px 16px 60px;
-}
+function renderToday() {
+  const todayContent = document.getElementById('today-content');
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const todayName = days[new Date().getDay()];
+  const todayPlan = weeklyPlan[todayName];
 
-.hero {
-  margin-bottom: 24px;
-}
-
-h1 {
-  margin: 0 0 8px;
-  font-size: 34px;
-}
-
-h2 {
-  margin-top: 0;
-}
-
-.subtitle {
-  color: #5e5e5e;
-  margin: 0;
-}
-
-.card {
-  background: #ffffff;
-  border: 1px solid #e1ddd3;
-  border-radius: 16px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-}
-
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.day-card {
-  border: 1px solid #e4e0d7;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 14px;
-  background: #fbfaf7;
-}
-
-.day-card h3 {
-  margin: 0 0 10px;
-}
-
-.meal-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.meal-label {
-  font-weight: bold;
-  min-width: 60px;
-}
-
-.recipe-button,
-.secondary-btn {
-  border: none;
-  border-radius: 10px;
-  padding: 10px 14px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.recipe-button {
-  background: #0b6b6f;
-  color: white;
-}
-
-.recipe-button:hover {
-  background: #084f52;
-}
-
-.secondary-btn {
-  background: #ece8de;
-  color: #1f1f1f;
-}
-
-.secondary-btn:hover {
-  background: #ddd6c8;
-}
-
-.task-list,
-.ingredient-list,
-.step-list,
-.grocery-list,
-.recipe-list {
-  padding-left: 20px;
-}
-
-.meta-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 10px;
-  margin: 14px 0 18px;
-}
-
-.meta-box {
-  background: #f5f1e8;
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid #e8e2d4;
-}
-
-.note-box {
-  background: #f7fbfb;
-  border: 1px solid #d5e8e8;
-  border-radius: 12px;
-  padding: 14px;
-  margin-top: 12px;
-}
-
-.grocery-category {
-  margin-bottom: 18px;
-}
-
-.grocery-category h3 {
-  margin-bottom: 10px;
-}
-
-.grocery-item {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.helper-text {
-  color: #666;
-}
-
-@media (max-width: 640px) {
-  h1 {
-    font-size: 28px;
+  if (!todayPlan) {
+    todayContent.innerHTML = '<p>No plan found for today.</p>';
+    return;
   }
 
-  .card {
-    padding: 16px;
-  }
+  const lunchRecipe = getRecipeById(todayPlan.lunch);
+  const dinnerRecipe = getRecipeById(todayPlan.dinner);
+
+  const combinedTasks = [
+    `Lunch: ${lunchRecipe.tasks[0] || 'Prepare lunch ingredients.'}`,
+    `Lunch: ${lunchRecipe.tasks[1] || 'Cook lunch.'}`,
+    `Dinner: ${dinnerRecipe.tasks[0] || 'Prepare dinner ingredients.'}`,
+    `Dinner: ${dinnerRecipe.tasks[1] || 'Cook dinner.'}`
+  ];
+
+  todayContent.innerHTML = `
+    <p><strong>Today is:</strong> ${todayName}</p>
+    <p><strong>Lunch:</strong> ${lunchRecipe.name} (${lunchRecipe.protein} g protein)</p>
+    <p><strong>Dinner:</strong> ${dinnerRecipe.name} (${dinnerRecipe.protein} g protein)</p>
+    <h3>Today's tasks</h3>
+    <ul class="task-list">
+      ${combinedTasks.map((task) => `<li>${task}</li>`).join('')}
+    </ul>
+    <div class="note-box">
+      <strong>Backup rule:</strong> If you are too tired in the evening, use the Emergency Eggs Curd Fruit Plate instead of ordering food.
+    </div>
+  `;
+}
+
+function showRecipe(id) {
+  const recipe = getRecipeById(id);
+  const recipeContent = document.getElementById('recipe-content');
+
+  recipeContent.innerHTML = `
+    <h3>${recipe.name}</h3>
+    <div class="meta-grid">
+      <div class="meta-box"><strong>Meal Type</strong><br>${recipe.mealType}</div>
+      <div class="meta-box"><strong>Prep Time</strong><br>${recipe.prepTime} min</div>
+      <div class="meta-box"><strong>Cook Time</strong><br>${recipe.cookTime} min</div>
+      <div class="meta-box"><strong>Protein</strong><br>${recipe.protein} g</div>
+    </div>
+
+    <h4>Ingredients</h4>
+    <ul class="ingredient-list">
+      ${recipe.ingredients.map((item) => `<li>${item.name} - ${item.qty}</li>`).join('')}
+    </ul>
+
+    <h4>Cooking Steps</h4>
+    <ol class="step-list">
+      ${recipe.steps.map((step) => `<li>${step}</li>`).join('')}
+    </ol>
+
+    <h4>What needs to be done</h4>
+    <ul class="task-list">
+      ${recipe.tasks.map((task) => `<li>${task}</li>`).join('')}
+    </ul>
+  `;
+}
+
+function renderGroceryList() {
+  const groceryContent = document.getElementById('grocery-content');
+  const grouped = {};
+
+  recipes.forEach((recipe) => {
+    recipe.ingredients.forEach((item) => {
+      if (!grouped[item.group]) {
+        grouped[item.group] = [];
+      }
+      grouped[item.group].push(`${item.name} - ${item.qty}`);
+    });
+  });
+
+  groceryContent.innerHTML = Object.keys(grouped)
+    .map((group) => `
+      <div class="grocery-category">
+        <h3>${group}</h3>
+        <div class="grocery-list">
+          ${grouped[group].map((item) => `<label class="grocery-item"><input type="checkbox" /> <span>${item}</span></label>`).join('')}
+        </div>
+      </div>
+    `)
+    .join('');
+}
+
+function bindShowAllRecipes() {
+  const button = document.getElementById('show-all-recipes');
+  button.addEventListener('click', () => {
+    const recipeContent = document.getElementById('recipe-content');
+    recipeContent.innerHTML = `
+      <h3>All Recipes</h3>
+      <ul class="recipe-list">
+        ${recipes.map((recipe) => `<li><button class="recipe-button" onclick="showRecipe(${recipe.id})">${recipe.name}</button></li>`).join('')}
+      </ul>
+    `;
+  });
 }
