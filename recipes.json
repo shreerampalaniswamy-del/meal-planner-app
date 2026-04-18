@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "Air Fried Chicken Rice Bowl",
+    "mealType": "Lunch",
+    "prepTime": 10,
+    "cookTime": 15,
+    "protein": 58,
+    "batchPrep": true,
+    "ingredients": [
+      { "name": "Chicken breast", "qty": "250 g" },
+      { "name": "Cooked rice", "qty": "150 g" },
+      { "name": "Curd", "qty": "100 g" },
+      { "name": "Cucumber", "qty": "1/2" },
+      { "name": "Lemon", "qty": "1/2" },
+      { "name": "Chilli powder", "qty": "1 tsp" },
+      { "name": "Turmeric", "qty": "1/4 tsp" },
+      { "name": "Salt", "qty": "to taste" }
+    ],
+    "steps": [
+      "Marinate the chicken with curd, chilli powder, turmeric, lemon, and salt.",
+      "Preheat the air fryer to 180 C.",
+      "Cook the chicken for 12 to 15 minutes, flipping once if needed.",
+      "Reheat the rice.",
+      "Mix curd, cucumber, lemon, and salt for a quick side.",
+      "Serve the chicken, rice, and salad together."
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Egg Bhurji with Phulkas",
+    "mealType": "Dinner",
+    "prepTime": 10,
+    "cookTime": 12,
+    "protein": 30,
+    "batchPrep": false,
+    "ingredients": [
+      { "name": "Eggs", "qty": "4" },
+      { "name": "Onion", "qty": "1 small" },
+      { "name": "Tomato", "qty": "1 small" },
+      { "name": "Spinach", "qty": "1 handful" },
+      { "name": "Phulkas", "qty": "2" },
+      { "name": "Salt", "qty": "to taste" },
+      { "name": "Pepper", "qty": "to taste" }
+    ],
+    "steps": [
+      "Chop onion, tomato, and spinach.",
+      "Heat a pan and sauté onion until soft.",
+      "Add tomato and spinach, then cook for 2 to 3 minutes.",
+      "Crack in the eggs and scramble until cooked.",
+      "Add salt and pepper.",
+      "Serve hot with phulkas."
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Paneer Stir Fry Bowl",
+    "mealType": "Dinner",
+    "prepTime": 8,
+    "cookTime": 12,
+    "protein": 36,
+    "batchPrep": false,
+    "ingredients": [
+      { "name": "Paneer", "qty": "200 g" },
+      { "name": "Capsicum", "qty": "1" },
+      { "name": "Onion", "qty": "1 small" },
+      { "name": "Tomato", "qty": "1 small" },
+      { "name": "Pepper", "qty": "1 tsp" },
+      { "name": "Salt", "qty": "to taste" }
+    ],
+    "steps": [
+      "Cut paneer into cubes.",
+      "Chop the vegetables.",
+      "Heat a pan and cook onion and capsicum for 3 minutes.",
+      "Add tomato and paneer.",
+      "Season with salt and pepper.",
+      "Cook for 5 to 6 minutes and serve."
+    ]
+  }
+]

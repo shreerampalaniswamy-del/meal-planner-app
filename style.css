@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f4ef;
+  color: #222;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.recipe-button {
+  display: inline-block;
+  margin: 8px 8px 0 0;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #0b6b6f;
+  color: white;
+  cursor: pointer;
+}
+
+.recipe-button:hover {
+  background: #084f52;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.day-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #fafafa;
+}
