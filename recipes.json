@@ -7,7 +7,8 @@
     "cookTime": 15,
     "protein": 58,
     "batchPrep": true,
-    "category": "Protein",
+    "category": "Chicken",
+    "tags": ["Chicken", "Fast"],
     "ingredients": [
       { "name": "Chicken breast", "qty": "250 g", "group": "Protein" },
       { "name": "Cooked rice", "qty": "150 g", "group": "Staples" },
@@ -40,7 +41,8 @@
     "cookTime": 12,
     "protein": 30,
     "batchPrep": false,
-    "category": "Protein",
+    "category": "Egg",
+    "tags": ["Egg", "Fast"],
     "ingredients": [
       { "name": "Eggs", "qty": "4", "group": "Protein" },
       { "name": "Onion", "qty": "1 small", "group": "Vegetables" },
@@ -52,7 +54,7 @@
     ],
     "steps": [
       "Chop onion, tomato, and spinach.",
-      "Heat a pan and sauté onion until soft.",
+      "Heat a pan and saute onion until soft.",
       "Add tomato and spinach and cook for 2 to 3 minutes.",
       "Crack in the eggs and scramble until cooked.",
       "Add salt and pepper.",
@@ -72,7 +74,8 @@
     "cookTime": 12,
     "protein": 36,
     "batchPrep": false,
-    "category": "Protein",
+    "category": "Paneer",
+    "tags": ["Paneer", "Fast"],
     "ingredients": [
       { "name": "Paneer", "qty": "200 g", "group": "Protein" },
       { "name": "Capsicum", "qty": "1", "group": "Vegetables" },
@@ -103,7 +106,8 @@
     "cookTime": 15,
     "protein": 56,
     "batchPrep": true,
-    "category": "Protein",
+    "category": "Chicken",
+    "tags": ["Chicken", "Fast"],
     "ingredients": [
       { "name": "Chicken breast", "qty": "250 g", "group": "Protein" },
       { "name": "Cooked rice", "qty": "150 g", "group": "Staples" },
@@ -135,7 +139,8 @@
     "cookTime": 15,
     "protein": 28,
     "batchPrep": false,
-    "category": "Protein",
+    "category": "Vegetarian",
+    "tags": ["Vegetarian", "Fast"],
     "ingredients": [
       { "name": "Moong dal batter", "qty": "2 cups", "group": "Staples" },
       { "name": "Onion", "qty": "1 small", "group": "Vegetables" },
@@ -167,6 +172,7 @@
     "protein": 26,
     "batchPrep": false,
     "category": "Emergency",
+    "tags": ["Emergency", "Fast"],
     "ingredients": [
       { "name": "Eggs", "qty": "3", "group": "Protein" },
       { "name": "Curd", "qty": "200 g", "group": "Dairy" },
