@@ -7,23 +7,29 @@
     "cookTime": 15,
     "protein": 58,
     "batchPrep": true,
+    "category": "Protein",
     "ingredients": [
-      { "name": "Chicken breast", "qty": "250 g" },
-      { "name": "Cooked rice", "qty": "150 g" },
-      { "name": "Curd", "qty": "100 g" },
-      { "name": "Cucumber", "qty": "1/2" },
-      { "name": "Lemon", "qty": "1/2" },
-      { "name": "Chilli powder", "qty": "1 tsp" },
-      { "name": "Turmeric", "qty": "1/4 tsp" },
-      { "name": "Salt", "qty": "to taste" }
+      { "name": "Chicken breast", "qty": "250 g", "group": "Protein" },
+      { "name": "Cooked rice", "qty": "150 g", "group": "Staples" },
+      { "name": "Curd", "qty": "100 g", "group": "Dairy" },
+      { "name": "Cucumber", "qty": "1/2", "group": "Vegetables" },
+      { "name": "Lemon", "qty": "1/2", "group": "Vegetables" },
+      { "name": "Chilli powder", "qty": "1 tsp", "group": "Spices" },
+      { "name": "Turmeric", "qty": "1/4 tsp", "group": "Spices" },
+      { "name": "Salt", "qty": "to taste", "group": "Spices" }
     ],
     "steps": [
       "Marinate the chicken with curd, chilli powder, turmeric, lemon, and salt.",
       "Preheat the air fryer to 180 C.",
-      "Cook the chicken for 12 to 15 minutes, flipping once if needed.",
+      "Cook the chicken for 12 to 15 minutes.",
       "Reheat the rice.",
       "Mix curd, cucumber, lemon, and salt for a quick side.",
       "Serve the chicken, rice, and salad together."
+    ],
+    "tasks": [
+      "Check whether chicken is already marinated.",
+      "Cook or reheat rice.",
+      "Slice cucumber and mix curd side."
     ]
   },
   {
@@ -34,22 +40,28 @@
     "cookTime": 12,
     "protein": 30,
     "batchPrep": false,
+    "category": "Protein",
     "ingredients": [
-      { "name": "Eggs", "qty": "4" },
-      { "name": "Onion", "qty": "1 small" },
-      { "name": "Tomato", "qty": "1 small" },
-      { "name": "Spinach", "qty": "1 handful" },
-      { "name": "Phulkas", "qty": "2" },
-      { "name": "Salt", "qty": "to taste" },
-      { "name": "Pepper", "qty": "to taste" }
+      { "name": "Eggs", "qty": "4", "group": "Protein" },
+      { "name": "Onion", "qty": "1 small", "group": "Vegetables" },
+      { "name": "Tomato", "qty": "1 small", "group": "Vegetables" },
+      { "name": "Spinach", "qty": "1 handful", "group": "Vegetables" },
+      { "name": "Phulkas", "qty": "2", "group": "Staples" },
+      { "name": "Salt", "qty": "to taste", "group": "Spices" },
+      { "name": "Pepper", "qty": "to taste", "group": "Spices" }
     ],
     "steps": [
       "Chop onion, tomato, and spinach.",
       "Heat a pan and sauté onion until soft.",
-      "Add tomato and spinach, then cook for 2 to 3 minutes.",
+      "Add tomato and spinach and cook for 2 to 3 minutes.",
       "Crack in the eggs and scramble until cooked.",
       "Add salt and pepper.",
       "Serve hot with phulkas."
+    ],
+    "tasks": [
+      "Chop vegetables first.",
+      "Make bhurji fresh in the evening.",
+      "Serve with ready phulkas or leftover chapati."
     ]
   },
   {
@@ -60,13 +72,14 @@
     "cookTime": 12,
     "protein": 36,
     "batchPrep": false,
+    "category": "Protein",
     "ingredients": [
-      { "name": "Paneer", "qty": "200 g" },
-      { "name": "Capsicum", "qty": "1" },
-      { "name": "Onion", "qty": "1 small" },
-      { "name": "Tomato", "qty": "1 small" },
-      { "name": "Pepper", "qty": "1 tsp" },
-      { "name": "Salt", "qty": "to taste" }
+      { "name": "Paneer", "qty": "200 g", "group": "Protein" },
+      { "name": "Capsicum", "qty": "1", "group": "Vegetables" },
+      { "name": "Onion", "qty": "1 small", "group": "Vegetables" },
+      { "name": "Tomato", "qty": "1 small", "group": "Vegetables" },
+      { "name": "Pepper", "qty": "1 tsp", "group": "Spices" },
+      { "name": "Salt", "qty": "to taste", "group": "Spices" }
     ],
     "steps": [
       "Cut paneer into cubes.",
@@ -75,6 +88,103 @@
       "Add tomato and paneer.",
       "Season with salt and pepper.",
       "Cook for 5 to 6 minutes and serve."
+    ],
+    "tasks": [
+      "Take paneer out of fridge 10 minutes earlier.",
+      "Cook fresh for dinner.",
+      "Add fruit on the side if protein is already met."
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Chicken Curd Bowl",
+    "mealType": "Lunch",
+    "prepTime": 10,
+    "cookTime": 15,
+    "protein": 56,
+    "batchPrep": true,
+    "category": "Protein",
+    "ingredients": [
+      { "name": "Chicken breast", "qty": "250 g", "group": "Protein" },
+      { "name": "Cooked rice", "qty": "150 g", "group": "Staples" },
+      { "name": "Curd", "qty": "150 g", "group": "Dairy" },
+      { "name": "Cucumber", "qty": "1/2", "group": "Vegetables" },
+      { "name": "Onion", "qty": "1/4", "group": "Vegetables" },
+      { "name": "Mint leaves", "qty": "small handful", "group": "Vegetables" },
+      { "name": "Salt", "qty": "to taste", "group": "Spices" }
+    ],
+    "steps": [
+      "Cook the marinated chicken in the air fryer or pan.",
+      "Reheat rice.",
+      "Mix curd, cucumber, onion, mint, and salt.",
+      "Place rice in a bowl.",
+      "Top with chicken and curd mix.",
+      "Serve immediately."
+    ],
+    "tasks": [
+      "Use pre-marinated chicken if available.",
+      "Assemble fresh curd bowl just before eating.",
+      "Good option on hot Chennai afternoons."
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Moong Dal Chilla Plate",
+    "mealType": "Dinner",
+    "prepTime": 15,
+    "cookTime": 15,
+    "protein": 28,
+    "batchPrep": false,
+    "category": "Protein",
+    "ingredients": [
+      { "name": "Moong dal batter", "qty": "2 cups", "group": "Staples" },
+      { "name": "Onion", "qty": "1 small", "group": "Vegetables" },
+      { "name": "Tomato", "qty": "1 small", "group": "Vegetables" },
+      { "name": "Curd", "qty": "150 g", "group": "Dairy" },
+      { "name": "Salt", "qty": "to taste", "group": "Spices" },
+      { "name": "Chilli", "qty": "1", "group": "Spices" }
+    ],
+    "steps": [
+      "Mix chopped onion, tomato, chilli, and salt into the moong batter.",
+      "Heat a tawa.",
+      "Pour batter and spread lightly.",
+      "Cook both sides until done.",
+      "Repeat for remaining batter.",
+      "Serve with curd."
+    ],
+    "tasks": [
+      "Best if batter is ready beforehand.",
+      "Use this on a lighter dinner day.",
+      "Add fruit after dinner."
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Emergency Eggs Curd Fruit Plate",
+    "mealType": "Dinner",
+    "prepTime": 5,
+    "cookTime": 8,
+    "protein": 26,
+    "batchPrep": false,
+    "category": "Emergency",
+    "ingredients": [
+      { "name": "Eggs", "qty": "3", "group": "Protein" },
+      { "name": "Curd", "qty": "200 g", "group": "Dairy" },
+      { "name": "Banana or guava", "qty": "1 serving", "group": "Fruits" },
+      { "name": "Salt", "qty": "to taste", "group": "Spices" },
+      { "name": "Pepper", "qty": "to taste", "group": "Spices" }
+    ],
+    "steps": [
+      "Boil or scramble the eggs.",
+      "Season lightly with salt and pepper.",
+      "Take curd into a bowl.",
+      "Wash and cut the fruit if needed.",
+      "Serve everything together."
+    ],
+    "tasks": [
+      "Use this when you are too tired to cook.",
+      "This is your no-ordering fallback meal.",
+      "Add one scoop protein if your daily protein is low."
     ]
   }
 ]
