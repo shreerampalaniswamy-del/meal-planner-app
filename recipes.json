@@ -34,7 +34,12 @@
       "Check if chicken is marinated from the night before.",
       "Chop vegetables fresh before eating.",
       "Add fruit last to keep it fresh."
-    ]
+    ],
+    "nutrition": {
+      "calories": 280, "protein": 38, "carbs": 18, "fat": 6, "fibre": 5,
+      "iron": 1.8, "calcium": 55, "magnesium": 52, "zinc": 2.1,
+      "omega3": 0.2, "vitaminC": 48, "vitaminD": 0.2, "vitaminB12": 0.4
+    }
   },
   {
     "id": 2,
@@ -59,7 +64,7 @@
       { "name": "Salt", "qty": "to taste", "group": "Spices" }
     ],
     "steps": [
-      "Boil eggs for 10 minutes or scramble them in a pan.",
+      "Boil eggs for 10 minutes or scramble in a pan.",
       "Slice cucumber, carrot, tomato, capsicum, and onion.",
       "Toss vegetables with lemon, pepper, and salt.",
       "Plate the eggs with the salad.",
@@ -70,7 +75,12 @@
       "Boil eggs in advance if possible.",
       "Chop vegetables fresh.",
       "Add fruit just before eating."
-    ]
+    ],
+    "nutrition": {
+      "calories": 260, "protein": 22, "carbs": 16, "fat": 12, "fibre": 4,
+      "iron": 2.6, "calcium": 80, "magnesium": 38, "zinc": 2.0,
+      "omega3": 0.3, "vitaminC": 45, "vitaminD": 1.8, "vitaminB12": 1.5
+    }
   },
   {
     "id": 3,
@@ -107,7 +117,12 @@
       "Use leftover rice if available for better texture.",
       "Cook chicken first so it is ready to mix in.",
       "Keep heat high for a proper stir fry texture."
-    ]
+    ],
+    "nutrition": {
+      "calories": 480, "protein": 44, "carbs": 48, "fat": 10, "fibre": 3,
+      "iron": 2.8, "calcium": 65, "magnesium": 55, "zinc": 3.2,
+      "omega3": 0.2, "vitaminC": 12, "vitaminD": 1.0, "vitaminB12": 1.2
+    }
   },
   {
     "id": 4,
@@ -143,7 +158,12 @@
       "Take paneer out of fridge 10 minutes early.",
       "Reheat rice before plating.",
       "Keep oil minimal to stay lean."
-    ]
+    ],
+    "nutrition": {
+      "calories": 520, "protein": 40, "carbs": 50, "fat": 18, "fibre": 4,
+      "iron": 2.2, "calcium": 480, "magnesium": 60, "zinc": 2.8,
+      "omega3": 0.1, "vitaminC": 35, "vitaminD": 0.2, "vitaminB12": 0.6
+    }
   },
   {
     "id": 5,
@@ -179,7 +199,12 @@
       "Use cold leftover rice for best texture.",
       "Keep the heat high throughout.",
       "Add curd on the side if protein is still low for the day."
-    ]
+    ],
+    "nutrition": {
+      "calories": 440, "protein": 28, "carbs": 46, "fat": 14, "fibre": 3,
+      "iron": 3.2, "calcium": 90, "magnesium": 48, "zinc": 2.6,
+      "omega3": 0.4, "vitaminC": 10, "vitaminD": 2.4, "vitaminB12": 2.0
+    }
   },
   {
     "id": 6,
@@ -215,7 +240,12 @@
       "Cook millet in advance if possible.",
       "Use pre-marinated chicken from the fridge.",
       "Good high protein, high fibre dinner option."
-    ]
+    ],
+    "nutrition": {
+      "calories": 460, "protein": 45, "carbs": 44, "fat": 7, "fibre": 7,
+      "iron": 3.5, "calcium": 75, "magnesium": 88, "zinc": 3.4,
+      "omega3": 0.2, "vitaminC": 22, "vitaminD": 0.2, "vitaminB12": 0.5
+    }
   },
   {
     "id": 7,
@@ -250,7 +280,12 @@
       "Cook millet in advance.",
       "Scramble eggs fresh for dinner.",
       "Add curd on the side if protein is low."
-    ]
+    ],
+    "nutrition": {
+      "calories": 420, "protein": 28, "carbs": 42, "fat": 14, "fibre": 6,
+      "iron": 4.0, "calcium": 110, "magnesium": 82, "zinc": 2.8,
+      "omega3": 0.4, "vitaminC": 30, "vitaminD": 2.4, "vitaminB12": 2.0
+    }
   },
   {
     "id": 8,
@@ -282,6 +317,11 @@
       "Use this on tired evenings instead of ordering.",
       "Works best with pre-marinated chicken.",
       "Add one scoop protein shake if daily target is not met."
-    ]
+    ],
+    "nutrition": {
+      "calories": 320, "protein": 42, "carbs": 20, "fat": 7, "fibre": 2,
+      "iron": 1.6, "calcium": 220, "magnesium": 42, "zinc": 2.4,
+      "omega3": 0.1, "vitaminC": 14, "vitaminD": 0.4, "vitaminB12": 1.0
+    }
   }
 ]
