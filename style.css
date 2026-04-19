@@ -1,4 +1,61 @@
-/* Grocery list upgrades */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f6f4ef; color: #1f1f1f; }
+.container { max-width: 1050px; margin: 0 auto; padding: 24px 16px 60px; }
+.hero { margin-bottom: 24px; }
+h1 { margin: 0 0 8px; font-size: 34px; }
+h2 { margin-top: 0; }
+.subtitle { color: #5e5e5e; margin: 0; }
+.card { background: #ffffff; border: 1px solid #e1ddd3; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+.section-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.day-card { border: 1px solid #e4e0d7; border-radius: 12px; padding: 16px; margin-bottom: 14px; background: #fbfaf7; }
+.day-card h3 { margin: 0 0 10px; }
+.meal-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
+.meal-label { font-weight: bold; min-width: 60px; }
+.recipe-button, .secondary-btn, .filter-btn { border: none; border-radius: 10px; padding: 10px 14px; cursor: pointer; font-size: 14px; }
+.recipe-button { background: #0b6b6f; color: white; }
+.recipe-button:hover { background: #084f52; }
+.secondary-btn { background: #ece8de; color: #1f1f1f; }
+.secondary-btn:hover { background: #ddd6c8; }
+.filter-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.filter-btn { background: #f1ede5; color: #1f1f1f; border: 1px solid #ded8cb; }
+.filter-btn.active, .filter-btn:hover { background: #0b6b6f; color: #fff; }
+.recipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.recipe-card { border: 1px solid #e4e0d7; border-radius: 14px; padding: 16px; background: #fbfaf7; display: flex; flex-direction: column; gap: 10px; }
+.recipe-card h3 { margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { display: inline-block; padding: 5px 9px; border-radius: 999px; background: #ece8de; font-size: 12px; }
+.task-list, .ingredient-list, .step-list { padding-left: 20px; }
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 14px 0; }
+.meta-box { background: #f5f1e8; border-radius: 10px; padding: 10px; border: 1px solid #e8e2d4; font-size: 14px; }
+.note-box { background: #f7fbfb; border: 1px solid #d5e8e8; border-radius: 12px; padding: 14px; margin-top: 12px; }
+.helper-text { color: #666; font-size: 13px; }
+.bf-toggle-wrap { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.bf-toggle-label { font-weight: bold; }
+.bf-toggle { display: flex; gap: 8px; }
+.bf-btn { border: 1px solid #ded8cb; border-radius: 10px; padding: 8px 14px; cursor: pointer; font-size: 14px; background: #f1ede5; color: #1f1f1f; }
+.bf-btn.active { background: #0b6b6f; color: white; border-color: #0b6b6f; }
+.nutrition-panel { background: #f9f8f5; border: 1px solid #e4e0d7; border-radius: 14px; padding: 16px; margin-top: 14px; }
+.nutrition-panel h4 { margin: 0 0 12px; }
+.macro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
+.macro-box { background: white; border: 1px solid #e4e0d7; border-radius: 10px; padding: 10px 8px; text-align: center; }
+.macro-box strong { display: block; font-size: 18px; }
+.macro-box span { font-size: 12px; color: #666; }
+.micro-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.micro-label { min-width: 90px; font-size: 13px; font-weight: bold; }
+.micro-bar-wrap { flex: 1; background: #e8e4dc; border-radius: 999px; height: 10px; overflow: hidden; }
+.micro-bar { height: 100%; border-radius: 999px; transition: width 0.4s; }
+.micro-val { min-width: 120px; font-size: 12px; color: #444; text-align: right; }
+.micro-pct { font-weight: bold; }
+.fix-panel { background: #fff8f0; border: 1px solid #f0c08a; border-radius: 14px; padding: 16px; margin-top: 14px; }
+.fix-panel h4 { margin: 0 0 12px; color: #7a3e00; }
+.fix-card { background: white; border: 1px solid #f0dbc0; border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+.fix-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.fix-nutrient { font-weight: bold; font-size: 15px; }
+.fix-pct { font-size: 13px; }
+.fix-section-label { margin: 8px 0 4px; font-size: 13px; font-weight: bold; color: #444; }
+.fix-list { padding-left: 18px; margin: 4px 0 8px; font-size: 13px; }
+.fix-list li { margin-bottom: 5px; }
+.fix-supp { margin: 0; font-size: 13px; background: #f0f7ff; border: 1px solid #c8dcf0; border-radius: 8px; padding: 8px 10px; }
 .grocery-summary { background: #f0f7f4; border: 1px solid #b8ddd0; border-radius: 14px; padding: 16px; margin-bottom: 20px; }
 .grocery-total-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .grocery-total-label { font-size: 16px; font-weight: bold; }
@@ -18,4 +75,4 @@
 .grocery-item-source { font-size: 11px; padding: 3px 8px; border-radius: 999px; font-weight: bold; min-width: 60px; text-align: center; }
 .source-blinkit { background: #fff0e0; color: #c47c00; border: 1px solid #f0c080; }
 .source-local { background: #e8f5e8; color: #437a22; border: 1px solid #b8d8b8; }
-@media (max-width: 640px) { .grocery-item { flex-wrap: wrap; } .grocery-item-qty { min-width: unset; } }
+@media (max-width: 640px) { h1 { font-size: 28px; } .card { padding: 16px; } .micro-label { min-width: 70px; } .fix-header { flex-direction: column; align-items: flex-start; } .grocery-item { flex-wrap: wrap; } .grocery-item-qty { min-width: unset; } }
