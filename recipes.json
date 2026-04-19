@@ -9,6 +9,7 @@
     "batchPrep": true,
     "category": "Chicken",
     "tags": ["Chicken", "Fast", "Low Carb"],
+    "costPerServing": 75,
     "ingredients": [
       { "name": "Chicken breast", "qty": "150 g", "group": "Protein" },
       { "name": "Cucumber", "qty": "1/2", "group": "Vegetables" },
@@ -17,7 +18,7 @@
       { "name": "Capsicum", "qty": "1/2", "group": "Vegetables" },
       { "name": "Onion", "qty": "1/4", "group": "Vegetables" },
       { "name": "Lemon", "qty": "1/2", "group": "Vegetables" },
-      { "name": "Banana or guava or papaya", "qty": "1 serving", "group": "Fruits" },
+      { "name": "Fruit (banana/guava/papaya)", "qty": "1 serving", "group": "Fruits" },
       { "name": "Chilli powder", "qty": "1/2 tsp", "group": "Spices" },
       { "name": "Pepper", "qty": "1/2 tsp", "group": "Spices" },
       { "name": "Salt", "qty": "to taste", "group": "Spices" }
@@ -47,10 +48,11 @@
     "mealType": "Lunch",
     "prepTime": 8,
     "cookTime": 10,
-    "protein": 36,
+    "protein": 21,
     "batchPrep": false,
     "category": "Egg",
     "tags": ["Egg", "Fast", "Low Carb"],
+    "costPerServing": 50,
     "ingredients": [
       { "name": "Eggs", "qty": "3 whole eggs", "group": "Protein" },
       { "name": "Cucumber", "qty": "1/2", "group": "Vegetables" },
@@ -59,7 +61,7 @@
       { "name": "Capsicum", "qty": "1/2", "group": "Vegetables" },
       { "name": "Onion", "qty": "1/4", "group": "Vegetables" },
       { "name": "Lemon", "qty": "1/2", "group": "Vegetables" },
-      { "name": "Banana or guava or papaya", "qty": "1 serving", "group": "Fruits" },
+      { "name": "Fruit (banana/guava/papaya)", "qty": "1 serving", "group": "Fruits" },
       { "name": "Pepper", "qty": "1/2 tsp", "group": "Spices" },
       { "name": "Salt", "qty": "to taste", "group": "Spices" }
     ],
@@ -77,7 +79,7 @@
       "Add fruit just before eating."
     ],
     "nutrition": {
-      "calories": 260, "protein": 22, "carbs": 16, "fat": 12, "fibre": 4,
+      "calories": 210, "protein": 21, "carbs": 16, "fat": 10, "fibre": 4,
       "iron": 2.6, "calcium": 80, "magnesium": 38, "zinc": 2.0,
       "omega3": 0.3, "vitaminC": 45, "vitaminD": 1.8, "vitaminB12": 1.5
     }
@@ -92,6 +94,7 @@
     "batchPrep": false,
     "category": "Chicken",
     "tags": ["Chicken", "Fast"],
+    "costPerServing": 90,
     "ingredients": [
       { "name": "Chicken breast", "qty": "150 g", "group": "Protein" },
       { "name": "Eggs", "qty": "2", "group": "Protein" },
@@ -134,6 +137,7 @@
     "batchPrep": false,
     "category": "Paneer",
     "tags": ["Paneer", "Fast"],
+    "costPerServing": 115,
     "ingredients": [
       { "name": "Paneer", "qty": "200 g", "group": "Protein" },
       { "name": "Cooked rice", "qty": "150 g", "group": "Staples" },
@@ -171,10 +175,11 @@
     "mealType": "Dinner",
     "prepTime": 8,
     "cookTime": 12,
-    "protein": 38,
+    "protein": 28,
     "batchPrep": false,
     "category": "Egg",
     "tags": ["Egg", "Fast"],
+    "costPerServing": 55,
     "ingredients": [
       { "name": "Eggs", "qty": "4", "group": "Protein" },
       { "name": "Cooked rice", "qty": "150 g", "group": "Staples" },
@@ -216,6 +221,7 @@
     "batchPrep": true,
     "category": "Chicken",
     "tags": ["Chicken", "Fast"],
+    "costPerServing": 85,
     "ingredients": [
       { "name": "Chicken breast", "qty": "180 g", "group": "Protein" },
       { "name": "Cooked millet", "qty": "150 g", "group": "Staples" },
@@ -253,10 +259,11 @@
     "mealType": "Dinner",
     "prepTime": 8,
     "cookTime": 18,
-    "protein": 36,
+    "protein": 28,
     "batchPrep": false,
     "category": "Egg",
     "tags": ["Egg", "Fast"],
+    "costPerServing": 60,
     "ingredients": [
       { "name": "Eggs", "qty": "4", "group": "Protein" },
       { "name": "Cooked millet", "qty": "150 g", "group": "Staples" },
@@ -297,11 +304,12 @@
     "batchPrep": true,
     "category": "Emergency",
     "tags": ["Emergency", "Fast", "Chicken"],
+    "costPerServing": 70,
     "ingredients": [
       { "name": "Chicken breast", "qty": "150 g", "group": "Protein" },
       { "name": "Curd", "qty": "200 g", "group": "Dairy" },
       { "name": "Cucumber", "qty": "1/2", "group": "Vegetables" },
-      { "name": "Banana or fruit", "qty": "1 serving", "group": "Fruits" },
+      { "name": "Fruit (banana/guava/papaya)", "qty": "1 serving", "group": "Fruits" },
       { "name": "Salt", "qty": "to taste", "group": "Spices" },
       { "name": "Pepper", "qty": "to taste", "group": "Spices" }
     ],
