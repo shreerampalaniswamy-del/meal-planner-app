@@ -8,45 +8,173 @@ const weeklyPlan = {
   Sunday:    { lunch: 1, dinner: 7 }
 };
 
-const dailyProteinTarget = 130;
-
 let recipes = [];
-let activeFilter = 'All';
+let breakfastData = {};
+let shakeData = {};
+let targets = {};
+let selectedBreakfast = 'oats';
+const PROTEIN_TARGET = 130;
 
-fetch('recipes.json')
-  .then((response) => response.json())
-  .then((data) => {
-    recipes = data;
-    renderWeek();
-    renderToday();
-    renderGroceryList();
-    renderRecipeGrid();
-    bindFilters();
-    bindShowAllRecipes();
-  })
-  .catch(() => {
-    document.getElementById('today-content').innerHTML =
-      '<p>Could not load recipes.json. Check the file is uploaded correctly.</p>';
-  });
+Promise.all([
+  fetch('recipes.json').then(r => r.json()),
+  fetch('breakfasts.json').then(r => r.json())
+]).then(([recipeList, bfData]) => {
+  recipes = recipeList;
+  breakfastData = bfData.breakfasts;
+  shakeData = bfData.shake;
+  targets = bfData.targets;
+  renderWeek();
+  renderToday();
+  renderGroceryList();
+  renderRecipeGrid();
+  bindFilters();
+  bindShowAllRecipes();
+  bindBreakfastToggle();
+}).catch(() => {
+  document.getElementById('today-content').innerHTML =
+    '<p>Could not load data files. Check that recipes.json and breakfasts.json are uploaded correctly.</p>';
+});
 
 function getRecipeById(id) {
-  return recipes.find((r) => r.id === id);
+  return recipes.find(r => r.id === id);
+}
+
+function sumNutrition(...items) {
+  const keys = ['calories','protein','carbs','fat','fibre','iron','calcium','magnesium','zinc','omega3','vitaminC','vitaminD','vitaminB12'];
+  const total = {};
+  keys.forEach(k => { total[k] = 0; });
+  items.forEach(item => {
+    if (item && item.nutrition) {
+      keys.forEach(k => { total[k] += (item.nutrition[k] || 0); });
+    }
+  });
+  return total;
+}
+
+function pct(val, target) {
+  return Math.min(Math.round((val / target) * 100), 100);
+}
+
+function barColor(p) {
+  if (p >= 80) return '#437a22';
+  if (p >= 50) return '#c47c00';
+  return '#b03030';
+}
+
+function microBar(label, val, target, unit) {
+  const p = pct(val, target);
+  const col = barColor(p);
+  return `
+    <div class="micro-row">
+      <span class="micro-label">${label}</span>
+      <div class="micro-bar-wrap">
+        <div class="micro-bar" style="width:${p}%;background:${col}"></div>
+      </div>
+      <span class="micro-val">${typeof val === 'number' ? val.toFixed(1) : val} ${unit} <span class="micro-pct" style="color:${col}">${p}%</span></span>
+    </div>`;
+}
+
+function renderNutritionPanel(total) {
+  const proteinOk = total.protein >= PROTEIN_TARGET;
+  return `
+    <div class="nutrition-panel">
+      <h4>Daily Nutrition Summary</h4>
+      <div class="macro-grid">
+        <div class="macro-box" style="border-top:3px solid #0b6b6f">
+          <strong>${Math.round(total.calories)}</strong><span>kcal</span>
+        </div>
+        <div class="macro-box" style="border-top:3px solid #437a22">
+          <strong>${total.protein.toFixed(1)} g</strong><span>Protein ${proteinOk ? '✓' : '⚠'}</span>
+        </div>
+        <div class="macro-box" style="border-top:3px solid #c47c00">
+          <strong>${total.carbs.toFixed(1)} g</strong><span>Carbs</span>
+        </div>
+        <div class="macro-box" style="border-top:3px solid #964219">
+          <strong>${total.fat.toFixed(1)} g</strong><span>Fat</span>
+        </div>
+        <div class="macro-box" style="border-top:3px solid #5a7a9a">
+          <strong>${total.fibre.toFixed(1)} g</strong><span>Fibre</span>
+        </div>
+      </div>
+      <h4 style="margin-top:16px">Micronutrients <small style="color:#888;font-weight:normal">% of daily target</small></h4>
+      ${microBar('Iron', total.iron, targets.iron, 'mg')}
+      ${microBar('Calcium', total.calcium, targets.calcium, 'mg')}
+      ${microBar('Magnesium', total.magnesium, targets.magnesium, 'mg')}
+      ${microBar('Zinc', total.zinc, targets.zinc, 'mg')}
+      ${microBar('Omega 3', total.omega3, targets.omega3, 'g')}
+      ${microBar('Vitamin C', total.vitaminC, targets.vitaminC, 'mg')}
+      ${microBar('Vitamin D', total.vitaminD, targets.vitaminD, 'mcg')}
+      ${microBar('Vitamin B12', total.vitaminB12, targets.vitaminB12, 'mcg')}
+    </div>`;
+}
+
+function renderToday() {
+  const todayContent = document.getElementById('today-content');
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const todayName = days[new Date().getDay()];
+  const todayPlan = weeklyPlan[todayName];
+  if (!todayPlan || recipes.length === 0) return;
+
+  const lr = getRecipeById(todayPlan.lunch);
+  const dr = getRecipeById(todayPlan.dinner);
+  const bf = breakfastData[selectedBreakfast];
+  const total = sumNutrition(bf, shakeData, lr, dr);
+
+  const tasks = [
+    'Morning: Check if chicken is marinated. If not, marinate now.',
+    `Lunch (${lr.name}): ${lr.tasks[0]}`,
+    `Lunch: ${lr.tasks[1]}`,
+    `Dinner (${dr.name}): ${dr.tasks[0]}`,
+    `Dinner: ${dr.tasks[1]}`
+  ];
+
+  todayContent.innerHTML = `
+    <div class="bf-toggle-wrap">
+      <span class="bf-toggle-label">Today's breakfast:</span>
+      <div class="bf-toggle" id="bf-toggle">
+        <button class="bf-btn ${selectedBreakfast === 'oats' ? 'active' : ''}" data-bf="oats">Overnight Oats</button>
+        <button class="bf-btn ${selectedBreakfast === 'bread' ? 'active' : ''}" data-bf="bread">Bread + Eggs</button>
+      </div>
+    </div>
+    <p><strong>Today is:</strong> ${todayName}</p>
+    <div class="meta-grid">
+      <div class="meta-box"><strong>Breakfast</strong><br>${bf.name}</div>
+      <div class="meta-box"><strong>Lunch</strong><br>${lr.name}</div>
+      <div class="meta-box"><strong>Dinner</strong><br>${dr.name}</div>
+      <div class="meta-box"><strong>+ Shake</strong><br>30 g protein</div>
+    </div>
+    ${renderNutritionPanel(total)}
+    <h3 style="margin-top:16px">Today's tasks</h3>
+    <ul class="task-list">${tasks.map(t => `<li>${t}</li>`).join('')}</ul>
+    <div class="note-box" style="margin-top:12px">
+      <strong>Too tired to cook dinner?</strong> Use Emergency Chicken Curd Bowl instead of ordering.
+    </div>`;
+
+  bindBreakfastToggle();
+}
+
+function bindBreakfastToggle() {
+  document.querySelectorAll('.bf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedBreakfast = btn.dataset.bf;
+      renderToday();
+    });
+  });
 }
 
 function renderWeek() {
   const weekContent = document.getElementById('week-content');
   weekContent.innerHTML = '';
-  Object.keys(weeklyPlan).forEach((day) => {
+  Object.keys(weeklyPlan).forEach(day => {
     const lr = getRecipeById(weeklyPlan[day].lunch);
     const dr = getRecipeById(weeklyPlan[day].dinner);
-    const totalProtein = 30 + 12 + lr.protein + dr.protein;
-    const proteinStatus = totalProtein >= dailyProteinTarget
-      ? '<span style="color:#437a22">✓ ' + totalProtein + ' g protein</span>'
-      : '<span style="color:#964219">⚠ ' + totalProtein + ' g protein — add curd or eggs</span>';
+    const bf = breakfastData[selectedBreakfast];
+    const total = sumNutrition(bf, shakeData, lr, dr);
+    const proteinOk = total.protein >= PROTEIN_TARGET;
     const dayDiv = document.createElement('div');
     dayDiv.className = 'day-card';
     dayDiv.innerHTML = `
-      <h3>${day} <small>${proteinStatus}</small></h3>
+      <h3>${day} <small style="color:${proteinOk ? '#437a22' : '#964219'}">${proteinOk ? '✓' : '⚠'} ${total.protein.toFixed(0)} g protein · ${Math.round(total.calories)} kcal</small></h3>
       <div class="meal-row">
         <span class="meal-label">Lunch</span>
         <button class="recipe-button" onclick="showRecipe(${lr.id})">${lr.name}</button>
@@ -55,51 +183,20 @@ function renderWeek() {
       <div class="meal-row">
         <span class="meal-label">Dinner</span>
         <button class="recipe-button" onclick="showRecipe(${dr.id})">${dr.name}</button>
-        <span class="helper-text">${dr.protein} g protein · Carb + protein</span>
+        <span class="helper-text">${dr.protein} g protein · Carbs + protein</span>
       </div>`;
     weekContent.appendChild(dayDiv);
   });
 }
 
-function renderToday() {
-  const todayContent = document.getElementById('today-content');
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const todayName = days[new Date().getDay()];
-  const todayPlan = weeklyPlan[todayName];
-  if (!todayPlan) { todayContent.innerHTML = '<p>No plan found for today.</p>'; return; }
-  const lr = getRecipeById(todayPlan.lunch);
-  const dr = getRecipeById(todayPlan.dinner);
-  const totalProtein = 30 + 12 + lr.protein + dr.protein;
-  const proteinOk = totalProtein >= dailyProteinTarget;
-  const tasks = [
-    `Morning: Check if chicken is marinated. If not, marinate now.`,
-    `Lunch (${lr.name}): ${lr.tasks[0]}`,
-    `Lunch: ${lr.tasks[1]}`,
-    `Dinner (${dr.name}): ${dr.tasks[0]}`,
-    `Dinner: ${dr.tasks[1]}`
-  ];
-  todayContent.innerHTML = `
-    <p><strong>Today is:</strong> ${todayName}</p>
-    <div class="meta-grid">
-      <div class="meta-box"><strong>Lunch</strong><br>${lr.name}</div>
-      <div class="meta-box"><strong>Dinner</strong><br>${dr.name}</div>
-      <div class="meta-box"><strong>Est. Protein</strong><br>${totalProtein} g</div>
-      <div class="meta-box"><strong>Target</strong><br>${dailyProteinTarget}–150 g</div>
-    </div>
-    ${!proteinOk ? '<div class="note-box" style="border-color:#f0b97a;background:#fffaf2"><strong>⚠ Protein low today.</strong> Add 100 g curd or 2 boiled eggs to hit your target.</div>' : '<div class="note-box"><strong>✓ Protein target met</strong> if you have your shake and breakfast.</div>'}
-    <h3>Today\'s tasks</h3>
-    <ul class="task-list">${tasks.map((t) => `<li>${t}</li>`).join('')}</ul>
-    <div class="note-box" style="margin-top:12px">
-      <strong>Too tired to cook dinner?</strong> Use Emergency Chicken Curd Bowl instead of ordering.
-    </div>`;
-}
+let activeFilter = 'All';
 
 function renderRecipeGrid() {
   const recipeGrid = document.getElementById('recipe-grid');
   const filtered = activeFilter === 'All'
     ? recipes
-    : recipes.filter((r) => r.tags.includes(activeFilter) || r.category === activeFilter);
-  recipeGrid.innerHTML = filtered.map((recipe) => `
+    : recipes.filter(r => r.tags.includes(activeFilter) || r.category === activeFilter);
+  recipeGrid.innerHTML = filtered.map(recipe => `
     <div class="recipe-card">
       <h3>${recipe.name}</h3>
       <div class="tags">
@@ -107,6 +204,7 @@ function renderRecipeGrid() {
         <span class="tag">${recipe.mealType}</span>
         <span class="tag">${recipe.prepTime + recipe.cookTime} min</span>
         <span class="tag">${recipe.protein} g protein</span>
+        <span class="tag">${recipe.nutrition.calories} kcal</span>
       </div>
       <p>${recipe.steps[0]}</p>
       <button class="recipe-button" onclick="showRecipe(${recipe.id})">Open recipe</button>
@@ -116,6 +214,7 @@ function renderRecipeGrid() {
 function showRecipe(id) {
   const recipe = getRecipeById(id);
   const recipeContent = document.getElementById('recipe-content');
+  const n = recipe.nutrition;
   recipeContent.innerHTML = `
     <h3>${recipe.name}</h3>
     <div class="meta-grid">
@@ -124,17 +223,36 @@ function showRecipe(id) {
       <div class="meta-box"><strong>Cook Time</strong><br>${recipe.cookTime} min</div>
       <div class="meta-box"><strong>Protein</strong><br>${recipe.protein} g</div>
     </div>
+    <div class="nutrition-panel">
+      <h4>Macros per serving</h4>
+      <div class="macro-grid">
+        <div class="macro-box" style="border-top:3px solid #0b6b6f"><strong>${n.calories}</strong><span>kcal</span></div>
+        <div class="macro-box" style="border-top:3px solid #437a22"><strong>${n.protein} g</strong><span>Protein</span></div>
+        <div class="macro-box" style="border-top:3px solid #c47c00"><strong>${n.carbs} g</strong><span>Carbs</span></div>
+        <div class="macro-box" style="border-top:3px solid #964219"><strong>${n.fat} g</strong><span>Fat</span></div>
+        <div class="macro-box" style="border-top:3px solid #5a7a9a"><strong>${n.fibre} g</strong><span>Fibre</span></div>
+      </div>
+      <h4 style="margin-top:16px">Key Micros</h4>
+      ${microBar('Iron', n.iron, targets.iron, 'mg')}
+      ${microBar('Calcium', n.calcium, targets.calcium, 'mg')}
+      ${microBar('Magnesium', n.magnesium, targets.magnesium, 'mg')}
+      ${microBar('Zinc', n.zinc, targets.zinc, 'mg')}
+      ${microBar('Omega 3', n.omega3, targets.omega3, 'g')}
+      ${microBar('Vitamin C', n.vitaminC, targets.vitaminC, 'mg')}
+      ${microBar('Vitamin D', n.vitaminD, targets.vitaminD, 'mcg')}
+      ${microBar('Vitamin B12', n.vitaminB12, targets.vitaminB12, 'mcg')}
+    </div>
     <h4>Ingredients</h4>
     <ul class="ingredient-list">
-      ${recipe.ingredients.map((item) => `<li>${item.name} — ${item.qty}</li>`).join('')}
+      ${recipe.ingredients.map(item => `<li>${item.name} — ${item.qty}</li>`).join('')}
     </ul>
     <h4>Cooking Steps</h4>
     <ol class="step-list">
-      ${recipe.steps.map((step) => `<li>${step}</li>`).join('')}
+      ${recipe.steps.map(step => `<li>${step}</li>`).join('')}
     </ol>
     <h4>What to do</h4>
     <ul class="task-list">
-      ${recipe.tasks.map((task) => `<li>${task}</li>`).join('')}
+      ${recipe.tasks.map(task => `<li>${task}</li>`).join('')}
     </ul>`;
   recipeContent.scrollIntoView({ behavior: 'smooth' });
 }
@@ -142,25 +260,25 @@ function showRecipe(id) {
 function renderGroceryList() {
   const groceryContent = document.getElementById('grocery-content');
   const grouped = {};
-  recipes.forEach((recipe) => {
-    recipe.ingredients.forEach((item) => {
+  recipes.forEach(recipe => {
+    recipe.ingredients.forEach(item => {
       if (!grouped[item.group]) grouped[item.group] = new Set();
       grouped[item.group].add(`${item.name} — ${item.qty}`);
     });
   });
-  groceryContent.innerHTML = Object.keys(grouped).map((group) => `
+  groceryContent.innerHTML = Object.keys(grouped).map(group => `
     <div class="grocery-category">
       <h3>${group}</h3>
       <div class="grocery-list">
-        ${[...grouped[group]].map((item) => `<label class="grocery-item"><input type="checkbox" /> <span>${item}</span></label>`).join('')}
+        ${[...grouped[group]].map(item => `<label class="grocery-item"><input type="checkbox" /> <span>${item}</span></label>`).join('')}
       </div>
     </div>`).join('');
 }
 
 function bindFilters() {
-  document.querySelectorAll('.filter-btn').forEach((button) => {
+  document.querySelectorAll('.filter-btn').forEach(button => {
     button.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       button.classList.add('active');
       activeFilter = button.dataset.filter;
       renderRecipeGrid();
@@ -171,10 +289,10 @@ function bindFilters() {
 function bindShowAllRecipes() {
   document.getElementById('show-all-recipes').addEventListener('click', () => {
     activeFilter = 'All';
-    document.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.filter-btn[data-filter="All"]').classList.add('active');
     renderRecipeGrid();
     document.getElementById('recipe-content').innerHTML =
-      '<p>Click a recipe card to see ingredients and instructions here.</p>';
+      '<p>Click a recipe card to see full nutrition, ingredients, and instructions.</p>';
   });
 }
