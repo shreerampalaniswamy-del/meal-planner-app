@@ -36,7 +36,7 @@
       "food": [
         { "item": "1 handful spinach (raw)", "boost": 0.8, "calories": 7 },
         { "item": "1 tbsp pumpkin seeds", "boost": 1.1, "calories": 45 },
-        { "item": "100 g rajma / kidney beans (cooked)", "boost": 2.0, "calories": 127 }
+        { "item": "100 g rajma cooked", "boost": 2.0, "calories": 127 }
       ],
       "supplement": "Iron supplement 18 mg tablet — take with Vitamin C for better absorption"
     },
@@ -44,8 +44,8 @@
       "label": "Calcium", "unit": "mg",
       "food": [
         { "item": "100 g low fat curd", "boost": 120, "calories": 60 },
-        { "item": "1 glass milk (150 ml)", "boost": 175, "calories": 90 },
-        { "item": "30 g paneer (small cubes)", "boost": 70, "calories": 82 }
+        { "item": "1 glass milk 150 ml", "boost": 175, "calories": 90 },
+        { "item": "30 g paneer small cubes", "boost": 70, "calories": 82 }
       ],
       "supplement": "Calcium Citrate 500 mg tablet — take with meals for best absorption"
     },
@@ -65,22 +65,22 @@
         { "item": "1 boiled egg", "boost": 0.6, "calories": 78 },
         { "item": "100 g chicken breast", "boost": 1.0, "calories": 165 }
       ],
-      "supplement": "Zinc Picolinate 15 mg tablet — take with food, not on empty stomach"
+      "supplement": "Zinc Picolinate 15 mg tablet — take with food not on empty stomach"
     },
     "omega3": {
       "label": "Omega 3", "unit": "g",
       "food": [
-        { "item": "10 g flax seeds (ground)", "boost": 2.3, "calories": 55 },
+        { "item": "10 g flax seeds ground", "boost": 2.3, "calories": 55 },
         { "item": "10 g chia seeds", "boost": 1.8, "calories": 49 },
         { "item": "10 g walnuts", "boost": 1.3, "calories": 65 }
       ],
-      "supplement": "Fish Oil / Algae Omega 3 — 1000 mg capsule with EPA+DHA, take with dinner"
+      "supplement": "Fish Oil or Algae Omega 3 — 1000 mg capsule with EPA and DHA, take with dinner"
     },
     "vitaminC": {
       "label": "Vitamin C", "unit": "mg",
       "food": [
-        { "item": "1/2 guava", "boost": 112, "calories": 37 },
-        { "item": "1/2 capsicum (raw)", "boost": 60, "calories": 16 },
+        { "item": "half guava", "boost": 112, "calories": 37 },
+        { "item": "half capsicum raw", "boost": 60, "calories": 16 },
         { "item": "1 small tomato", "boost": 14, "calories": 18 }
       ],
       "supplement": "Vitamin C 500 mg tablet — safe daily, take in morning with breakfast"
@@ -88,11 +88,11 @@
     "vitaminD": {
       "label": "Vitamin D", "unit": "mcg",
       "food": [
-        { "item": "15 min morning sunlight (before 9 AM)", "boost": 5.0, "calories": 0 },
+        { "item": "15 min morning sunlight before 9 AM", "boost": 5.0, "calories": 0 },
         { "item": "2 whole eggs", "boost": 1.2, "calories": 155 },
         { "item": "100 g low fat curd", "boost": 0.1, "calories": 60 }
       ],
-      "supplement": "Vitamin D3 2000 IU tablet — take weekly or daily with a fat-containing meal"
+      "supplement": "Vitamin D3 2000 IU tablet — take weekly or daily with a fat containing meal"
     },
     "vitaminB12": {
       "label": "Vitamin B12", "unit": "mcg",
@@ -101,7 +101,7 @@
         { "item": "100 g curd", "boost": 0.4, "calories": 60 },
         { "item": "100 g chicken breast", "boost": 0.3, "calories": 165 }
       ],
-      "supplement": "Vitamin B12 1000 mcg tablet (methylcobalamin) — take once a week"
+      "supplement": "Vitamin B12 1000 mcg tablet methylcobalamin — take once a week"
     }
   }
 }
