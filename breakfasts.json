@@ -1,0 +1,33 @@
+{
+  "breakfasts": {
+    "oats": {
+      "name": "Overnight Oats",
+      "nutrition": {
+        "calories": 320, "protein": 14, "carbs": 32, "fat": 15, "fibre": 8,
+        "iron": 4.2, "calcium": 210, "magnesium": 95, "zinc": 2.8,
+        "omega3": 3.5, "vitaminC": 2, "vitaminD": 1.2, "vitaminB12": 0.5
+      }
+    },
+    "bread": {
+      "name": "Bread + 2 Eggs",
+      "nutrition": {
+        "calories": 280, "protein": 16, "carbs": 28, "fat": 10, "fibre": 2,
+        "iron": 2.4, "calcium": 90, "magnesium": 22, "zinc": 1.8,
+        "omega3": 0.1, "vitaminC": 0, "vitaminD": 1.4, "vitaminB12": 1.0
+      }
+    }
+  },
+  "shake": {
+    "name": "True Basics Protein Shake",
+    "nutrition": {
+      "calories": 130, "protein": 30, "carbs": 4, "fat": 2, "fibre": 0,
+      "iron": 0.5, "calcium": 120, "magnesium": 20, "zinc": 1.5,
+      "omega3": 0, "vitaminC": 0, "vitaminD": 0, "vitaminB12": 0
+    }
+  },
+  "targets": {
+    "calories": 2200, "protein": 140, "carbs": 220, "fat": 65, "fibre": 30,
+    "iron": 8, "calcium": 1000, "magnesium": 400, "zinc": 11,
+    "omega3": 1.6, "vitaminC": 90, "vitaminD": 15, "vitaminB12": 2.4
+  }
+}
