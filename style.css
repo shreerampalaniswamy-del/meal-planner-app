@@ -24,7 +24,7 @@ h2 { margin-top: 0; }
 .recipe-card h3 { margin: 0; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag { display: inline-block; padding: 5px 9px; border-radius: 999px; background: #ece8de; font-size: 12px; }
-.task-list, .ingredient-list, .step-list, .grocery-list, .recipe-list { padding-left: 20px; }
+.task-list, .ingredient-list, .step-list, .grocery-list { padding-left: 20px; }
 .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 14px 0; }
 .meta-box { background: #f5f1e8; border-radius: 10px; padding: 10px; border: 1px solid #e8e2d4; font-size: 14px; }
 .note-box { background: #f7fbfb; border: 1px solid #d5e8e8; border-radius: 12px; padding: 14px; margin-top: 12px; }
@@ -47,6 +47,16 @@ h2 { margin-top: 0; }
 .micro-label { min-width: 90px; font-size: 13px; font-weight: bold; }
 .micro-bar-wrap { flex: 1; background: #e8e4dc; border-radius: 999px; height: 10px; overflow: hidden; }
 .micro-bar { height: 100%; border-radius: 999px; transition: width 0.4s; }
-.micro-val { min-width: 110px; font-size: 12px; color: #444; text-align: right; }
+.micro-val { min-width: 120px; font-size: 12px; color: #444; text-align: right; }
 .micro-pct { font-weight: bold; }
-@media (max-width: 640px) { h1 { font-size: 28px; } .card { padding: 16px; } .micro-label { min-width: 70px; } }
+.fix-panel { background: #fff8f0; border: 1px solid #f0c08a; border-radius: 14px; padding: 16px; margin-top: 14px; }
+.fix-panel h4 { margin: 0 0 12px; color: #7a3e00; }
+.fix-card { background: white; border: 1px solid #f0dbc0; border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+.fix-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.fix-nutrient { font-weight: bold; font-size: 15px; }
+.fix-pct { font-size: 13px; }
+.fix-section-label { margin: 8px 0 4px; font-size: 13px; font-weight: bold; color: #444; }
+.fix-list { padding-left: 18px; margin: 4px 0 8px; font-size: 13px; }
+.fix-list li { margin-bottom: 5px; }
+.fix-supp { margin: 0; font-size: 13px; background: #f0f7ff; border: 1px solid #c8dcf0; border-radius: 8px; padding: 8px 10px; }
+@media (max-width: 640px) { h1 { font-size: 28px; } .card { padding: 16px; } .micro-label { min-width: 70px; } .fix-header { flex-direction: column; align-items: flex-start; } }
